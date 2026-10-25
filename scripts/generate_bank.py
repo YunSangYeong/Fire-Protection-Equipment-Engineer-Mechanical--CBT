@@ -121,5 +121,5 @@ sample={**bank[0],'id':'LOCAL-FM-SAMPLE','question':'사용자 등록 예시: �
 (ROOT/'public/templates/questions.json').write_text(json.dumps([sample],ensure_ascii=False,indent=2)+'\n')
 fields=['id','subject','topic','question','choice1','choice2','choice3','choice4','answer','explanation','difficulty','year','session','type','sourceUrl','verificationStatus','reviewNote','version','rights']
 with (ROOT/'public/templates/questions.csv').open('w') as f:
- writer=csv.DictWriter(f,fields);writer.writeheader();row={k:sample.get(k,'') for k in fields};row.update({f'choice{i+1}':c for i,c in enumerate(sample['choices'])});writer.writerow(row)
+ writer=csv.DictWriter(f,fields,lineterminator="\n");writer.writeheader();row={k:sample.get(k,'') for k in fields};row.update({f'choice{i+1}':c for i,c in enumerate(sample['choices'])});writer.writerow(row)
 print(json.dumps({'total':len(bank),'subjects':{s:sum(q['subject']==s for q in bank) for s in SUBJECTS},'families':6,'variants':120},ensure_ascii=False))
