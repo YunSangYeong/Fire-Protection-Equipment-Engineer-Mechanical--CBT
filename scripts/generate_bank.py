@@ -116,10 +116,14 @@ for kind in ['hydrostatic','continuity','power','water-volume','mixture','nozzle
   def fmt(v):return format(v.normalize(),'f')
   choices=[f'{fmt(result*f)} {unit}' for f in [Decimal(1),Decimal(2),Decimal('0.5'),Decimal(3)]]
   add(subject,'기초 계산',stem,choices,f'주어진 조건을 SI 단위로 환산한다. {formula}. 따라서 답은 {fmt(result)} {unit}이다. 주어진 이상화 조건에서의 계산이며 실제 설비 선정 시 손실·안전 조건은 별도 검토한다.',kind,dict(kind=kind,values=values,result=float(result),unit=unit,precision=2))
+# Append only: the initial 200 IDs and records remain byte-equivalent.
+from expanded_bank import extend_bank
+extend_bank(add, SUBJECTS)
+
 (ROOT/'src/data/questions-main.json').write_text(json.dumps(bank,ensure_ascii=False,indent=2)+'\n')
 sample={**bank[0],'id':'LOCAL-FM-SAMPLE','question':'사용자 등록 예시: 연소 3요소 중 산소를 공급하는 요소는?','choices':['산소공급원','색상','길이','소음'],'answer':1,'verificationStatus':'pending','reviewNote':'등록 예시. 출처·권리·정답을 확인하고 로컬 승인 필요.'}
 (ROOT/'public/templates/questions.json').write_text(json.dumps([sample],ensure_ascii=False,indent=2)+'\n')
 fields=['id','subject','topic','question','choice1','choice2','choice3','choice4','answer','explanation','difficulty','year','session','type','sourceUrl','verificationStatus','reviewNote','version','rights']
 with (ROOT/'public/templates/questions.csv').open('w') as f:
  writer=csv.DictWriter(f,fields,lineterminator="\n");writer.writeheader();row={k:sample.get(k,'') for k in fields};row.update({f'choice{i+1}':c for i,c in enumerate(sample['choices'])});writer.writerow(row)
-print(json.dumps({'total':len(bank),'subjects':{s:sum(q['subject']==s for q in bank) for s in SUBJECTS},'families':6,'variants':120},ensure_ascii=False))
+print(json.dumps({'total':len(bank),'subjects':{s:sum(q['subject']==s for q in bank) for s in SUBJECTS},'families':len({q.get('family') for q in bank if q.get('family')}),'variants':sum(bool(q.get('family')) for q in bank)},ensure_ascii=False))

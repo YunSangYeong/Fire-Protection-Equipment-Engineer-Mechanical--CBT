@@ -1782,7 +1782,7 @@ function BankManager({
             기본 문항은 {BASE_BANK.length}개 모두 자체 제작입니다.
           </strong>
           <br />
-          원문 기출 0 · 복원문제 0. 시험 규칙은 공식 확인 미완료인 학습용 잠정 설정입니다. Q-Net 접근 차단으로 기출 원문·재배포 권한·출제기준 대조는 완료하지 못했습니다. 목표 1,000문항 중 200문항 등록, 800문항 부족입니다. 기본 문항은 AI의 일반 지식으로 자체 작성하고 내부 문장 검토 및 계산 검증을 거쳤으며 외부 전문가 검수는 받지 않았습니다.
+          원문 기출 0 · 복원문제 0. 시험 규칙은 공식 확인 미완료인 학습용 잠정 설정입니다. Q-Net 접근 차단으로 기출 원문·재배포 권한·출제기준 대조는 완료하지 못했습니다. 목표 1,000문항 중 {BASE_BANK.length.toLocaleString("ko-KR")}문항 등록. 개념형 {BASE_BANK.filter(q => !q.family).length}개 · 계산 설정 {new Set(BASE_BANK.filter(q => q.family).map(q => q.family)).size}개 유형의 수치 변형 {BASE_BANK.filter(q => q.family).length}개입니다. 기본 문항은 AI의 일반 지식으로 자체 작성하고 내부 문장 검토 및 계산 검증을 거쳤으며 외부 전문가 검수는 받지 않았습니다.
         </div>
       </div>
       <div className="bank-tools panel">
