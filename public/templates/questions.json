@@ -1,0 +1,25 @@
+[
+  {
+    "id": "LOCAL-FM-SAMPLE",
+    "subject": "소방원론",
+    "topic": "기초 개념",
+    "question": "사용자 등록 예시: 연소 3요소 중 산소를 공급하는 요소는?",
+    "choices": [
+      "산소공급원",
+      "색상",
+      "길이",
+      "소음"
+    ],
+    "answer": 1,
+    "explanation": "연소의 3요소는 가연물, 산소공급원, 점화원이다. 질소는 통상 불활성 희석제로 작용하며 연소의 필수 요소에 속하지 않는다.",
+    "difficulty": "하",
+    "year": null,
+    "session": null,
+    "type": "original",
+    "sourceUrl": "https://github.com/YunSangYeong/Fire-Protection-Equipment-Engineer-Mechanical--CBT",
+    "verificationStatus": "pending",
+    "reviewNote": "등록 예시. 출처·권리·정답을 확인하고 로컬 승인 필요.",
+    "version": "main",
+    "rights": "자체 제작 학습 자료 · CC BY 4.0 (저장소·문항 ID 표시). 외부 기출 전재 아님."
+  }
+]
